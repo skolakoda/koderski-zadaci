@@ -7,16 +7,19 @@ class Editor extends HTMLElement {
         <textarea></textarea>
       </div>
 
-      <button>Proveri</button>
+      <button class='btn'>Proveri</button>
     `
   }
 
   connectedCallback() {
     // ovde mozemo koristiti selektor
+    const btn = document.querySelector('.btn')
     // dodati dogadjaj na dugme
+    btn.addEventListener('click', this.proveriZadatak)
   }
 
   proveriZadatak() {
+    alert('Provera zadatka...')
     // procita sadrzaj editora
     // evaluirati sadrzaj editora (eval)
     // pozvati testove za funkciju iz editora
