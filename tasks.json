@@ -1,0 +1,46 @@
+[
+    {
+    "id": "1",
+    "title": "Generate Random Whole Numbers within a Range",
+    "text": "Create a function called randomRange that receives a range myMin and myMax as arguments and returns a random number that's greater than or equal to myMin, and is less than or equal to myMax, inclusive.",
+    "tests": [
+        {
+            "input": "randomRange(2,5)",
+            "output": "if(output >= 2 && output <= 5){ return true; }"
+        },
+        {
+            "input": "randomRange(0,18)",
+            "output": "if(output >= 0 && output <= 18){ return true; }"
+        },
+        {
+            "input": "randomRange(568, 1000)",
+            "output": "if(output >= 568 && output <= 1000){ return true; }"
+        }
+
+    ],
+    "category": "mathematics",
+    "level": "4"
+  },
+  {
+    "id": "2",
+    "title": "Find the Longest Word in a String",
+    "text": "Create a function called findLongestWordLength that receives sentence in form of string and returns number of characters of the longest word in that sentence",
+    "tests": [
+        {
+            "input": "findLongestWordLength('The quick brown fox jumped over the lazy dog')",
+            "output": 6
+        },
+        {
+            "input": "findLongestWordLength('What is the average airspeed velocity of an unladen swallow')",
+            "output": 8
+        },
+        {
+            "input": "findLongestWordLength('What if we try a super-long word such as otorhinolaryngology')",
+            "output": 19
+        }
+
+    ],
+    "category": "string",
+    "level": "3"
+  }
+]
