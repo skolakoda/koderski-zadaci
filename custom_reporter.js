@@ -30,13 +30,15 @@ const myCustomReporter = {
     },
 
     jasmineDone: function(result) {
+        const resultHTMLElement = document.querySelector('#result')
+        let message = ''
         if(this.isFailed) {
-            const resultHTMLElement = document.querySelector('#result')
-            resultHTMLElement.append('Greška! Funkcija nije dobra') 
+            message = 'Greška! Funkcija nije dobra'
         } else {
-            const resultHTMLElement = document.querySelector('#result')
-            resultHTMLElement.append('Zadatak rešen...Dobili ste 3 bambija!')
+            message = 'Zadatak rešen...Dobili ste 3 bambija!'
         }
+        resultHTMLElement.append(message)
+
         console.log('Finished suite');
         console.log(result.overallStatus)
         
