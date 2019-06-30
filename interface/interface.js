@@ -29,5 +29,16 @@ function addStyle(challengeDiv) {
 
 function toTextarea(e) {
   addStyle(e);
-  //prikazivanje teksta zadatka
+  let id = e.getAttribute("id");
+  challengeArray.forEach(challenge => {
+    if (challenge.id == id) {
+      //in case of json text property spreads on more than 1 line
+      if (typeof challenge.text !== "string") {
+        const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', "g");
+        challengeText.innerHTML = challenge.text.toString().replace(reg, " ");
+        return;
+      }
+      challengeText.innerHTML = challenge.text;
+    }
+  });
 }
