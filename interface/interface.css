@@ -100,20 +100,24 @@ body {
     background-color: #0b0c10;
   }
   
-  .challengeText {
+  .challengeTextWrap {
     background-color: white;
     width: 90%;
-    margin: 30px auto;
+    margin: 30px auto 10px auto;
   }
   
-  .challengeText p {
+  .challengeTextWrap p {
     font-size: 14px;
-    padding: 7px;
+    font-family: 'Questrial', sans-serif;
+    padding: 10px;
+    word-spacing: 1.5px;
+    line-height: 1.3em;
+    font-weight: 500;
   }
   
   .editorField {
     width: 90%;
-    margin: 30px auto;
+    margin: 10px auto;
   }
   
   textarea {
