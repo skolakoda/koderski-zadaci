@@ -1,0 +1,49 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.login-page{
+   width: 360px;   
+   margin: auto;
+   padding: 10% 0 0 0;    
+}
+.form{
+    position: relative;
+    z-index: 1;
+    background: #f2f2f2;
+    max-width: 360px;
+    padding: 20%;
+    margin: 0 auto 100px auto;
+    text-align: center;
+    border-radius: 10px;
+}
+.form input{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;    
+    width: 100%;    
+    border-radius: 5px;
+    margin: 0 0 15px 0;
+    padding: 15px;   
+    height: 15px; 
+}
+.form button{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: capitalize;
+    width: 50%;
+    padding: 5px;
+    background: #4CAF50;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form button:hover, form button:active{
+    background: #43A047;
+}
+.form .message a{
+    text-decoration: none;
+}
+.form p{
+    margin: 10px 0 10px 0;
+}
+.dontShow{
+    display: none;
+}
