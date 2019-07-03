@@ -53,4 +53,7 @@ kzEditor,{
 
 const fromEditor = kzEditor.value
 const changeName = new Function(`return ${fromEditor}`)()
+//changeName is a function to test
+console.log(changeName);
+
 const run = document.querySelector('#run') // button
