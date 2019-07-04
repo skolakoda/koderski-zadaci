@@ -54,9 +54,9 @@ kzEditor,{
     lineNumbers: true,
 });
 
-const fromEditor = kzEditor.value
-const changeName = new Function(`return ${fromEditor}`)()
-//changeName is a function to test
-console.log(changeName);
-
-const run = document.querySelector('#run') // button
+const dugme = document.querySelector('#run')
+dugme.addEventListener('click', function() {
+  const fromEditor = editor.getValue()
+  const changeName = new Function(`return ${fromEditor}`)()
+  console.log(changeName) //changeName is a function to test
+})
