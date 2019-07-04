@@ -45,3 +45,18 @@ function toTextarea(e) {
     }
   });
 }
+
+const kzEditor = document.querySelector('#kzeditor')
+const editor = CodeMirror.fromTextArea(
+kzEditor,{
+    mode: 'javascript',
+    theme: 'nord',
+    lineNumbers: true,
+});
+
+const fromEditor = kzEditor.value
+const changeName = new Function(`return ${fromEditor}`)()
+//changeName is a function to test
+console.log(changeName);
+
+const run = document.querySelector('#run') // button

@@ -3,6 +3,8 @@ import './components/Navigacija.js'
 import './components/Footer.js'
 
 // uhvatiti iz editora
+const fromEditor = kzEditor.value
+export const changeName = new Function(`return ${fromEditor}`)()
 
 export function findLongestWordLength(text) {
     const nizBrojeva = text.split(' ')
