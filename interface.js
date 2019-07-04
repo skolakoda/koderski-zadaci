@@ -1,8 +1,11 @@
-const allChallenges = document.querySelector(".allChallenges");
+const allChallenges = document.querySelector('.allChallenges');
+const challengeText = document.querySelector('#challengeText');
+let challengeArray;
 
 fetch("../data/tasks.json")
   .then(response => response.json())
   .then(response => {
+    challengeArray = response;
     displayChallenge(response);
   });
 
