@@ -1,5 +1,5 @@
 class Navigacija extends HTMLElement {
-  constructor() {
+  constructor () {
     super()
     this.innerHTML = `
       <nav>
