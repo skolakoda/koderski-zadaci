@@ -1,40 +1,28 @@
 body {
   margin: 0;
   padding: 0;
-}
-
-.wrapper {
-  width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-auto-rows: auto;
   font-family: 'Questrial', sans-serif;
-  grid-template-areas:
-    "h h"
-    "m e"
-    "f f"
+  grid-template-areas: "h h" "m e" "j j" "f f";
 }
 
 header {
   grid-area: h;
-  width: 100%;
   background-color: #0b0c10;
   border-bottom: 1px solid #66FCF1;
   display: flex;
+  align-items: center;
   letter-spacing: .1em;
-}
-
-header img {
-  margin-top: 3%;
-}
-
-header h1 {
+  flex-direction: column;
   color: #66FCF1;
-  width: 25%;
-  text-align: center;
-  margin: 2% auto;
 }
+
+/* header img {
+  margin-top: 3%;
+} */
 
 .left {
   grid-area: m;
@@ -45,13 +33,11 @@ header h1 {
 .allChallenges {
   width: 90%;
   margin: 30px auto;
-  /* padding: 5px; */
   border: 1.2px solid #157c77;
   background-color: #f9fbff;
 }
 
 .challenge {
-  width: 100%;
   height: auto;
   border-bottom: 1.2px solid #157c77;
   color: #48a39e;
@@ -63,7 +49,6 @@ header h1 {
 }
 
 .challenge p {
-
   padding: 5px;
 }
 
@@ -94,12 +79,6 @@ header h1 {
   background-color: #202833;
 }
 
-footer {
-  grid-area: f;
-  width: 100%;
-  background-color: #0b0c10;
-}
-
 .challengeTextWrap {
   background-color: white;
   width: 90%;
@@ -121,17 +100,19 @@ footer {
 }
 
 textarea {
-  width: 100%;
   height: 50vh;
   padding: 7px;
 }
 
-footer p {
-  font-size: 16px;
-  width: 25%;
+nash-footer {
+  grid-area: f;
+  background-color: #0b0c10;
   text-align: center;
-  margin: 2% auto;
   color: #fff;
+}
+
+nash-footer p {
+  margin: 2% auto;
 }
 
 .active {
@@ -146,7 +127,6 @@ footer p {
 }
 
 #run {
-  width: 100%;
   height: 30px;
   background: #157c77;
   border: none;
@@ -160,12 +140,7 @@ footer p {
 }
 
 .jasmine_html-reporter {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
   background: #2e3440;
-  height: 250px;
-  overflow: auto;
+  grid-area: j;
   border-top: 2px solid #0dd6c8;
 }

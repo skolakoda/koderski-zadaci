@@ -1,0 +1,26 @@
+{
+  "name": "koderski-zadaci",
+  "version": "1.0.0",
+  "description": "Aplikacija za resavanje programerskih zadataka.",
+  "main": "main.js",
+  "scripts": {
+    "start": "live-server",
+    "lint": "standard --env jasmine --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skolakoda/koderski-zadaci.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skolakoda/koderski-zadaci/issues"
+  },
+  "homepage": "https://github.com/skolakoda/koderski-zadaci#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "standard": "^12.0.1"
+  }
+}

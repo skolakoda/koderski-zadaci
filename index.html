@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Koderski zadaci</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="libs/codemirror/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="libs/codemirror/lib/codemirror.css">
+  <script src="libs/codemirror/mode/javascript/javascript.js"></script>
+  <script src="libs/codemirror/addon/edit/closetag.js"></script>
+  <link rel="stylesheet" href="libs/codemirror/theme/nord.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine-html.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/boot.min.js"></script>
-  <script src="custom_reporter.js"></script>
 
-  <style>
-    .jasmine_html-reporter {
-      display:none;
-    }
-  </style>
+  <title>Koderski zadaci - vežbaj programiranje u editoru!</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-  
-  <kz-navigacija></kz-navigacija>
-  <kz-editor></kz-editor>
-  <div id="result"></div>
-  <kz-footer></kz-footer>
+
+  <header>
+    <h1>Code Challenges</h1>
+    <nasha-navigacija></nasha-navigacija>
+    <!-- <img src="https://img.icons8.com/color/48/000000/javascript.png" alt="jsIcon" /> -->
+  </header>
+
+  <div class="left">
+    <div class="allChallenges"></div>
+  </div>
+
+  <div class="right">
+    <div class="challengeTextWrap">
+      <p id="challengeText">
+        Create a function called findLongestWordLength that receives sentence in form of string and returns number of
+        characters of the longest word in that sentence
+      </p>
+    </div>
+    <div class="editorField">
+      <textarea id="kzeditor" class="mislimNemoj">
+function changeName(arg1, arg2) {
+return 'Zdravo'
+}
+</textarea>
+      <button id="run">Run</button>
+    </div>
+  </div>
+
+  <nash-footer></nash-footer>
+
   <script src="main.js" type="module"></script>
-  <script src="specs.js" type="module"></script>
+  <!--add spec.js-->
 </body>
+
 </html>

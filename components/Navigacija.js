@@ -1,5 +1,5 @@
 class Navigacija extends HTMLElement {
-  constructor() {
+  constructor () {
     super()
     this.innerHTML = `
       <nav>
@@ -10,4 +10,4 @@ class Navigacija extends HTMLElement {
   }
 }
 
-customElements.define('kz-navigacija', Navigacija)
+customElements.define('nasha-navigacija', Navigacija)

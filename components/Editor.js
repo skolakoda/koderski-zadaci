@@ -1,5 +1,5 @@
 class Editor extends HTMLElement {
-  constructor() {
+  constructor () {
     super()
     this.innerHTML = `
       Editor komponenta
@@ -11,14 +11,14 @@ class Editor extends HTMLElement {
     `
   }
 
-  connectedCallback() {
+  connectedCallback () {
     // ovde mozemo koristiti selektor
     const btn = document.querySelector('.btn')
     // dodati dogadjaj na dugme
     btn.addEventListener('click', this.proveriZadatak)
   }
 
-  proveriZadatak() {
+  proveriZadatak () {
     alert('Provera zadatka...')
     // procita sadrzaj editora
     // evaluirati sadrzaj editora (eval)
