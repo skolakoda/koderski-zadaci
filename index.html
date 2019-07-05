@@ -22,36 +22,35 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>Code Challenges</h1>
-      <img src="https://img.icons8.com/color/48/000000/javascript.png" alt="jsIcon" />
-      <nasha-navigacija></nasha-navigacija>
-    </header>
 
-    <div class="left">
-      <div class="allChallenges"></div>
+  <header>
+    <h1>Code Challenges</h1>
+    <nasha-navigacija></nasha-navigacija>
+    <!-- <img src="https://img.icons8.com/color/48/000000/javascript.png" alt="jsIcon" /> -->
+  </header>
+
+  <div class="left">
+    <div class="allChallenges"></div>
+  </div>
+
+  <div class="right">
+    <div class="challengeTextWrap">
+      <p id="challengeText">
+        Create a function called findLongestWordLength that receives sentence in form of string and returns number of
+        characters of the longest word in that sentence
+      </p>
     </div>
-
-    <div class="right">
-      <div class="challengeTextWrap">
-        <p id="challengeText">
-          Create a function called findLongestWordLength that receives sentence in form of string and returns number of
-          characters of the longest word in that sentence
-        </p>
-      </div>
-      <div class="editorField">
-        <textarea id="kzeditor" class="mislimNemoj">
+    <div class="editorField">
+      <textarea id="kzeditor" class="mislimNemoj">
 function changeName(arg1, arg2) {
-  return 'Zdravo'
+return 'Zdravo'
 }
 </textarea>
-        <button id="run">Run</button>
-      </div>
+      <button id="run">Run</button>
     </div>
-
-    <nash-footer></nash-footer>
   </div>
+
+  <nash-footer></nash-footer>
 
   <script src="main.js" type="module"></script>
   <!--add spec.js-->
