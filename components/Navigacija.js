@@ -10,4 +10,4 @@ class Navigacija extends HTMLElement {
   }
 }
 
-customElements.define('kz-navigacija', Navigacija)
+customElements.define('nasha-navigacija', Navigacija)

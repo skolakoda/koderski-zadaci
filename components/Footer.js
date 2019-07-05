@@ -2,11 +2,11 @@ class Footer extends HTMLElement {
     constructor() {
         super()
         this.innerHTML=`
-        <div>
-            <p>Copyright © 2019 {SK}</p>
-        </div>
+        <footer>
+            <p>Copyright © 2019 { Škola koda }</p>
+        </footer>
         `
     }
 }
 
-customElements.define('kz-footer', Footer)
+customElements.define('nash-footer', Footer)

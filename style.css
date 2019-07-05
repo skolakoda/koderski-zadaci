@@ -94,7 +94,7 @@ header h1 {
   background-color: #202833;
 }
 
-footer {
+nash-footer {
   grid-area: f;
   width: 100%;
   background-color: #0b0c10;
@@ -126,7 +126,7 @@ textarea {
   padding: 7px;
 }
 
-footer p {
+nash-footer p {
   font-size: 16px;
   width: 25%;
   text-align: center;
