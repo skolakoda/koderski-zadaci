@@ -61,8 +61,7 @@ function validationMessage(msg,field,message){
 }
 
 btnreg.addEventListener('click', (event) => {
-    event.preventDefault;
-    console.log("register click");        
+    event.preventDefault;         
     let email = regemail.value;
     let password = regpass.value;
     let repeatPassword = regrpass.value;   
