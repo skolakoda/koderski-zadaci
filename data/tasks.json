@@ -1,0 +1,132 @@
+[
+    {
+    "id": "1",
+    "title": "Generate Random Whole Numbers within a Range",
+    "text": "Create a function called randomRange that receives a range myMin and myMax as arguments and returns a random number that's greater than or equal to myMin, and is less than or equal to myMax, inclusive.",
+    "tests": [
+        {
+            "input": "randomRange(2,5)",
+            "output": "if(output >= 2 && output <= 5){ return true; }"
+        },
+        {
+            "input": "randomRange(0,18)",
+            "output": "if(output >= 0 && output <= 18){ return true; }"
+        },
+        {
+            "input": "randomRange(568, 1000)",
+            "output": "if(output >= 568 && output <= 1000){ return true; }"
+        }
+    ],
+    "category": "mathematics",
+    "level": "4"
+  },
+  {
+    "id": "2",
+    "title": "Find the Longest Word in a String",
+    "text": "Create a function called findLongestWordLength that receives sentence in form of string and returns number of characters of the longest word in that sentence",
+    "tests": [
+        {
+            "input": "findLongestWordLength('The quick brown fox jumped over the lazy dog')",
+            "output": 6
+        },
+        {
+            "input": "findLongestWordLength('What is the average airspeed velocity of an unladen swallow')",
+            "output": 8
+        },
+        {
+            "input": "findLongestWordLength('What if we try a super-long word such as otorhinolaryngology')",
+            "output": 19
+        }
+    ],
+    "category": "string",
+    "level": "2"
+  },
+  {
+    "id": "3",
+    "title": "Equal Sides Of An Array",
+    "text": ["You are going to be given a function findEvenIndex that accepts an array of integers.",
+    "Your job is to take that array and find an index N where the sum of the integers to the left of N is equal",
+     "to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.",
+     "For example: Let's say you are given the array {1,2,3,4,3,2,1} - Your function will return the index 3,",
+    "because at the 3rd position of the array, the sum of left side of the index ({1,2,3}) and the sum of the right side of the index ({3,2,1}) both equal 6."],
+    "tests": [
+        {
+            "input": "findEvenIndex([1,100,50,-51,1,1]",
+            "output": 1
+        },
+        {
+            "input": "findEvenIndex([1,2,3,4,5,6])",
+            "output": -1
+        },
+        {
+            "input": "findEvenIndex([20,10,30,10,10,15,35])",
+            "output": 3
+        }
+    ],
+    "category": "mathematics",
+    "level": "5"
+  },
+  {
+    "id": "4",
+    "title": "Ones and Zeros",
+    "text": "Given an array of ones and zeroes, create a function called binaryToNumber that converts the equivalent binary value to an integer. Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1. The arrays can have varying number of elements.",
+    "tests": [
+        {
+            "input": "binaryToNumber([0,0,1,0])",
+            "output": 2
+        },
+        {
+            "input": "binaryToNumber([1,1,1,1])",
+            "output": 15
+        },
+        {
+            "input": "binaryToNumber([0,1,1,0])",
+            "output": 6
+        }
+    ],
+    "category": "mathematics",
+    "level": "3"
+  },
+  {
+    "id": "6",
+    "title": "Exes and Ohs",
+    "text": "Create a function named XO that checks if a string has the same amount of 'x's and 'o's. It must return a boolean and be case insensitive. The input string can contain any char.",
+    "tests": [
+        {
+            "input": "XO('zpzpzpp')",
+            "output": true
+        },
+        {
+            "input": "XO('xxOo')",
+            "output": true
+        },
+        {
+            "input": "XO('ooom')",
+            "output": false
+        }
+    ],
+    "category": "boolean",
+    "level": "2"
+  },
+  {
+    "id": "7",
+    "title": "Chunky Monkey",
+    "text": "Write a function chunkArray that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array. For example ['a', 'b', 'c', 'd'], 2) should return [['a', 'b'], ['c', 'd']]",
+    "tests": [
+        {
+            "input": "chunkArray([0, 1, 2, 3, 4, 5], 3)",
+            "output": "[[0, 1, 2], [3, 4, 5]]"
+        },
+        {
+            "input": "chunkArray([0, 1, 2, 3, 4, 5], 2)",
+            "output": "[[0, 1], [2, 3], [4, 5]]"
+        },
+        {
+            "input": "chunkArray([0, 1, 2, 3, 4, 5, 6, 7, 8], 2)",
+            "output": "[[0, 1], [2, 3], [4, 5], [6, 7], [8]]"
+        }
+    ],
+    "category": "array",
+    "level": "3"
+  }
+]
