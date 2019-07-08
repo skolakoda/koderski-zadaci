@@ -1,7 +1,7 @@
 class LoginRegister extends HTMLElement {
-    constructor(){
-        super()
-        this.innerHTML=`
+  constructor () {
+    super()
+    this.innerHTML = `
             <!-- <div id="lr-form" class="login-page dontShow"> -->
                 <div class="form">
                     <form id="register-form" class="register-form dontShow" action="#">
@@ -23,7 +23,7 @@ class LoginRegister extends HTMLElement {
                 </div>
             <!-- </div> -->
         `
-    }
+  }
 }
 
 customElements.define('kz-login-register', LoginRegister)

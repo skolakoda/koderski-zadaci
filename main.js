@@ -1,10 +1,8 @@
 import './components/Navigacija.js'
 import './components/Footer.js'
-<<<<<<< HEAD
-/* import './components/Login.js'
-import './components/Register.js' */
+import './components/Login.js'
+import './components/Register.js'
 /* import './components/LoginRegister.js' */
-=======
 
 const allChallenges = document.querySelector('.allChallenges')
 const challengeText = document.querySelector('#challengeText')
@@ -70,4 +68,3 @@ dugme.addEventListener('click', function () {
   const resenje = new Function(`return ${fromEditor}`)()
   console.log(resenje) // resenje is a function to test
 })
->>>>>>> master
