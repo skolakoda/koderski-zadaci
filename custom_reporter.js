@@ -1,3 +1,4 @@
+const jasmine = window.jasmine
 const myCustomReporter = {
   isFailed: false,
 
