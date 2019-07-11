@@ -11,28 +11,25 @@ const dugme = document.querySelector('#run')
 function displayChallenge (challenges) {
   const star = '&#9733;'
   challenges.forEach(challenge => {
-    let challengeDiv = document.createElement('DIV')
-    challengeDiv.addEventListener('click', () => toTextarea(challengeDiv, challenges))
-    challengeDiv.id = challenge.id
-    challengeDiv.classList.add('challenge')
-    challengeDiv.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
-    allChallenges.appendChild(challengeDiv)
+    const div = document.createElement('DIV')
+    div.addEventListener('click', () => selectChallenge(div, challenges))
+    div.id = challenge.id
+    div.classList.add('challenge')
+    div.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
+    allChallenges.appendChild(div)
   })
 }
 
-function addStyle (challengeDiv) {
-  if (document.querySelectorAll('.active')) {
-    document.querySelectorAll('.active').forEach(activeDiv => {
-      activeDiv.classList.remove('active')
-    })
-  }
+function toggleActive (challengeDiv) {
+  document.querySelectorAll('.active').forEach(activeDiv => {
+    activeDiv.classList.remove('active')
+  })
   challengeDiv.classList.add('active')
 }
 
-function toTextarea (el, challenges) {
-  addStyle(el)
-  let id = el.getAttribute('id')
-  const challenge = challenges.find(challenge => challenge.id === id)
+function selectChallenge (div, challenges) {
+  toggleActive(div)
+  const challenge = challenges.find(challenge => challenge.id === div.id)
   if (typeof challenge.text !== 'string') {
     const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
     challengeText.innerHTML = challenge.text.toString().replace(reg, ' ')
