@@ -60,7 +60,7 @@ $('#run').addEventListener('click', function () {
   challenge.tests.forEach((test, i) => {
     const result = solution(test.input)
     try {
-      assert.equal(result, test.output)
+      assert.equal(result, test.output, 'Solution is not correct')
     } catch (e) {
       solved = false
       console.log(e.message)
