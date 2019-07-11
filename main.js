@@ -2,6 +2,7 @@ import { editor } from './utils/editor.js'
 import { $ } from './utils/helpers.js'
 import './components/Navigacija.js'
 import './components/Footer.js'
+const { assert, expect } = window.chai
 
 let challenges = []
 let currentChallengeId = '2'
@@ -58,8 +59,12 @@ $('#run').addEventListener('click', function () {
   let solved = true
   challenge.tests.forEach((test, i) => {
     const result = solution(test.input)
-    solved = solved && (result === test.output)
-    console.log(i, result === test.output)
+    try {
+      assert.equal(result, test.output)
+    } catch (e) {
+      solved = false
+      console.log(e.message)
+    }
   })
   const message = solved ? 'Cestitamo, resili ste zadatak!' : 'Resenje nije ispravno'
   $('#message').innerHTML = message

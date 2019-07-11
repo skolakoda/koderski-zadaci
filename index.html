@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.js"></script>
+
   <script src="libs/codemirror/lib/codemirror.js"></script>
   <link rel="stylesheet" href="libs/codemirror/lib/codemirror.css">
   <script src="libs/codemirror/mode/javascript/javascript.js"></script>
@@ -37,16 +39,17 @@
     <div class="editorField">
       <textarea id="kzeditor">
 function solution(arg1) {
-  return Math.max(...(arg1.split(' ').map(x => x.length)))
+  return Math.min(...(arg1.split(' ').map(x => x.length)))
 }
 </textarea>
       <button id="run">Run</button>
     </div>
   </div>
 
-  <div id="message">
+  <p id="message">
     Try your solution in code editor.
-  </div>
+  </p>
+
   <nash-footer></nash-footer>
 
   <script src="main.js" type="module"></script>
