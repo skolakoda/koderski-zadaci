@@ -1,14 +1,14 @@
 import { editor } from './utils/editor.js'
+import { $ } from './utils/helpers.js'
 import './components/Navigacija.js'
 import './components/Footer.js'
 
-const sidebar = document.querySelector('.challenges')
-const challengeText = document.querySelector('#challengeText')
-const runButton = document.querySelector('#run')
-
 let challenges = []
+let currentChallengeId = '2'
 
 /* FUNCTIONS */
+
+const findChallenge = id => challenges.find(challenge => challenge.id === id)
 
 function displayChallenge () {
   const star = '&#9733;'
@@ -18,7 +18,7 @@ function displayChallenge () {
     element.id = challenge.id
     element.classList.add('challenge')
     element.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
-    sidebar.appendChild(element)
+    $('.challenges').appendChild(element)
   })
 }
 
@@ -30,14 +30,15 @@ function toggleActive (challengeDiv) {
 }
 
 function selectChallenge (element) {
+  currentChallengeId = element.id
   toggleActive(element)
-  const challenge = challenges.find(challenge => challenge.id === element.id)
+  const challenge = findChallenge(currentChallengeId)
   if (typeof challenge.text !== 'string') {
     const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
-    challengeText.innerHTML = challenge.text.toString().replace(reg, ' ')
+    $('#challengeText').innerHTML = challenge.text.toString().replace(reg, ' ')
     return
   }
-  challengeText.innerHTML = challenge.text
+  $('#challengeText').innerHTML = challenge.text
 }
 
 /* INIT */
@@ -51,10 +52,15 @@ window.fetch('../data/tasks.json')
 
 /* EVENTS */
 
-runButton.addEventListener('click', function () {
-  const editorValue = editor.getValue()
-  // solution is a function to test
-  const solution = new Function(`return ${editorValue}`)() // eslint-disable-line
-  const result = solution('The quick brown fox jumped over the lazy dog')
-  console.log(result === 6)
+$('#run').addEventListener('click', function () {
+  const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
+  const challenge = findChallenge(currentChallengeId)
+  let solved = true
+  challenge.tests.forEach((test, i) => {
+    const result = solution(test.input)
+    solved = solved && (result === test.output)
+    console.log(i, result === test.output)
+  })
+  const message = solved ? 'Cestitamo, resili ste zadatak!' : 'Resenje nije ispravno'
+  $('#message').innerHTML = message
 })

@@ -20,21 +20,10 @@ header {
   color: #66FCF1;
 }
 
-/* header img {
-  margin-top: 3%;
-} */
-
 .left {
   grid-area: m;
   background-color: #202833;
   border-right: 3px solid #48a39e;
-}
-
-.allChallenges {
-  width: 90%;
-  margin: 30px auto;
-  border: 1.2px solid #157c77;
-  background-color: #f9fbff;
 }
 
 .challenge {
@@ -104,17 +93,6 @@ textarea {
   padding: 7px;
 }
 
-nash-footer {
-  grid-area: f;
-  background-color: #0b0c10;
-  text-align: center;
-  color: #fff;
-}
-
-nash-footer p {
-  margin: 2% auto;
-}
-
 .active {
   cursor: pointer;
   background-color: rgb(230, 230, 230);
@@ -137,4 +115,15 @@ nash-footer p {
 #run:hover {
   background: #016b64;
   color: #d4d1d1;
+}
+
+nash-footer {
+  grid-area: f;
+  background-color: #0b0c10;
+  text-align: center;
+  color: #fff;
+}
+
+nash-footer p {
+  margin: 2% auto;
 }
