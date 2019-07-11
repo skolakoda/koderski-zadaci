@@ -34,6 +34,8 @@ function selectChallenge (element) {
   currentChallengeId = element.id
   toggleActive(element)
   const challenge = findChallenge(currentChallengeId)
+  editor.setValue(challenge.body)
+
   if (typeof challenge.text !== 'string') {
     const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
     $('#challengeText').innerHTML = challenge.text.toString().replace(reg, ' ')
@@ -54,13 +56,15 @@ window.fetch('../data/tasks.json')
 /* EVENTS */
 
 $('#run').addEventListener('click', function () {
+  // mora naziv solution zbog JSON-a
   const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
   const challenge = findChallenge(currentChallengeId)
   let solved = true
   challenge.tests.forEach((test, i) => {
-    const result = solution(test.input)
     try {
-      assert.equal(result, test.output, 'Solution is not correct')
+      const result = eval(test.input) // izvrsava solution funkciju iz JSON-a
+      const output = JSON.parse(test.output)
+      assert[test.method](result, output, 'Solution is not correct')
     } catch (e) {
       solved = false
       console.log(e.message)
