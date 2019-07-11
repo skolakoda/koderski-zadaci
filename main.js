@@ -56,13 +56,13 @@ window.fetch('../data/tasks.json')
 /* EVENTS */
 
 $('#run').addEventListener('click', function () {
-  // mora naziv solution zbog JSON-a
-  const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
   const challenge = findChallenge(currentChallengeId)
+  // proglasava funkciju iz editora
+  window[challenge.name] = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
   let solved = true
-  challenge.tests.forEach((test, i) => {
+  challenge.tests.forEach(test => {
     try {
-      const result = eval(test.input) // izvrsava solution funkciju iz JSON-a
+      const result = eval(test.input) // izvrsava funkciju iz JSON-a
       const output = JSON.parse(test.output)
       assert[test.method](result, output, 'Solution is not correct')
     } catch (e) {
