@@ -2,6 +2,7 @@ import { editor } from './utils/editor.js'
 import { $ } from './utils/helpers.js'
 import './components/Navigacija.js'
 import './components/Footer.js'
+const { assert, expect } = window.chai
 
 let challenges = []
 let currentChallengeId = '2'
@@ -33,6 +34,8 @@ function selectChallenge (element) {
   currentChallengeId = element.id
   toggleActive(element)
   const challenge = findChallenge(currentChallengeId)
+  editor.setValue(challenge.body)
+
   if (typeof challenge.text !== 'string') {
     const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
     $('#challengeText').innerHTML = challenge.text.toString().replace(reg, ' ')
@@ -53,13 +56,19 @@ window.fetch('../data/tasks.json')
 /* EVENTS */
 
 $('#run').addEventListener('click', function () {
+  // mora naziv solution zbog JSON-a
   const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
   const challenge = findChallenge(currentChallengeId)
   let solved = true
   challenge.tests.forEach((test, i) => {
-    const result = solution(test.input)
-    solved = solved && (result === test.output)
-    console.log(i, result === test.output)
+    try {
+      const result = eval(test.input) // izvrsava solution funkciju iz JSON-a
+      const output = JSON.parse(test.output)
+      assert[test.method](result, output, 'Solution is not correct')
+    } catch (e) {
+      solved = false
+      console.log(e.message)
+    }
   })
   const message = solved ? 'Cestitamo, resili ste zadatak!' : 'Resenje nije ispravno'
   $('#message').innerHTML = message

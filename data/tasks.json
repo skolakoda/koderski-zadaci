@@ -3,18 +3,37 @@
     "id": "1",
     "title": "Generate Random Whole Numbers within a Range",
     "text": "Create a function called randomRange that receives a range myMin and myMax as arguments and returns a random number that's greater than or equal to myMin, and is less than or equal to myMax, inclusive.",
+    "body": "function solution(min, max) {\n\treturn \n}",
     "tests": [
         {
-            "input": "randomRange(2,5)",
-            "output": "if(output >= 2 && output <= 5){ return true; }"
+            "input": "solution(2,5)",
+            "output": 2,
+            "method": "isAtLeast"
         },
         {
-            "input": "randomRange(0,18)",
-            "output": "if(output >= 0 && output <= 18){ return true; }"
+            "input": "solution(2,5)",
+            "output": 5,
+            "method": "isAtMost"
         },
         {
-            "input": "randomRange(568, 1000)",
-            "output": "if(output >= 568 && output <= 1000){ return true; }"
+            "input": "solution(0,18)",
+            "output": 0,
+            "method": "isAtLeast"
+        },
+        {
+            "input": "solution(0,18)",
+            "output": 18,
+            "method": "isAtMost"
+        },
+        {
+            "input": "solution(568, 1000)",
+            "output": 568,
+            "method": "isAtLeast"
+        },
+        {
+            "input": "solution(568, 1000)",
+            "output": 1000,
+            "method": "isAtMost"
         }
     ],
     "category": "mathematics",
@@ -24,18 +43,22 @@
     "id": "2",
     "title": "Find the Longest Word in a String",
     "text": "Create a function called findLongestWordLength that receives sentence in form of string and returns number of characters of the longest word in that sentence",
+    "body": "function solution(text) {\n\treturn \n}",
     "tests": [
         {
-            "input": "The quick brown fox jumped over the lazy dog",
-            "output": 6
+            "input": "solution('The quick brown fox jumped over the lazy dog')",
+            "output": 6,
+            "method": "equal"
         },
         {
-            "input": "What is the average airspeed velocity of an unladen swallow",
-            "output": 8
+            "input": "solution('What is the average airspeed velocity of an unladen swallow')",
+            "output": 8,
+            "method": "equal"
         },
         {
-            "input": "What if we try a super-long word such as otorhinolaryngology",
-            "output": 19
+            "input": "solution('What if we try a super-long word such as otorhinolaryngology')",
+            "output": 19,
+            "method": "equal"
         }
     ],
     "category": "string",
@@ -72,15 +95,15 @@
     "text": "Given an array of ones and zeroes, create a function called binaryToNumber that converts the equivalent binary value to an integer. Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1. The arrays can have varying number of elements.",
     "tests": [
         {
-            "input": "binaryToNumber([0,0,1,0])",
+            "input": "solution([0,0,1,0])",
             "output": 2
         },
         {
-            "input": "binaryToNumber([1,1,1,1])",
+            "input": "solution([1,1,1,1])",
             "output": 15
         },
         {
-            "input": "binaryToNumber([0,1,1,0])",
+            "input": "solution([0,1,1,0])",
             "output": 6
         }
     ],
@@ -93,15 +116,15 @@
     "text": "Create a function named XO that checks if a string has the same amount of 'x's and 'o's. It must return a boolean and be case insensitive. The input string can contain any char.",
     "tests": [
         {
-            "input": "XO('zpzpzpp')",
+            "input": "solution('zpzpzpp')",
             "output": true
         },
         {
-            "input": "XO('xxOo')",
+            "input": "solution('xxOo')",
             "output": true
         },
         {
-            "input": "XO('ooom')",
+            "input": "solution('ooom')",
             "output": false
         }
     ],
@@ -114,15 +137,15 @@
     "text": "Write a function chunkArray that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array. For example ['a', 'b', 'c', 'd'], 2) should return [['a', 'b'], ['c', 'd']]",
     "tests": [
         {
-            "input": "chunkArray([0, 1, 2, 3, 4, 5], 3)",
+            "input": "solution([0, 1, 2, 3, 4, 5], 3)",
             "output": "[[0, 1, 2], [3, 4, 5]]"
         },
         {
-            "input": "chunkArray([0, 1, 2, 3, 4, 5], 2)",
+            "input": "solution([0, 1, 2, 3, 4, 5], 2)",
             "output": "[[0, 1], [2, 3], [4, 5]]"
         },
         {
-            "input": "chunkArray([0, 1, 2, 3, 4, 5, 6, 7, 8], 2)",
+            "input": "solution([0, 1, 2, 3, 4, 5, 6, 7, 8], 2)",
             "output": "[[0, 1], [2, 3], [4, 5], [6, 7], [8]]"
         }
     ],
