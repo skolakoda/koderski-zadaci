@@ -1,7 +1,6 @@
 import './components/Navigacija.js'
 import './components/Footer.js'
-import './components/Login.js'
-import './components/Register.js'
+
 /* import './components/LoginRegister.js' */
 
 const allChallenges = document.querySelector('.allChallenges')

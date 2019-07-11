@@ -5,6 +5,25 @@ import './components/Register.js'
 const token = window.localStorage.getItem('x-auth-token')
 console.log(token)
 
+if (token == null) {
+  const lrform = document.querySelector('#lr-form')
+  const formreg = document.querySelector('#register-form')
+  const formlog = document.querySelector('#login-form')
+  const alog = document.querySelector('#log')
+  const areg = document.querySelector('#reg')
+
+  lrform.classList.remove('dontShow')
+
+  areg.addEventListener('click', () => {
+    formlog.classList.remove('dontShow')
+    formreg.classList.add('dontShow')
+  })
+  alog.addEventListener('click', () => {
+    formlog.classList.add('dontShow')
+    formreg.classList.remove('dontShow')
+  })
+}
+
 /* function blankSpace (text) {
   const regBlankSpaces = /\s/g
   return regBlankSpaces.test(text)

@@ -4,7 +4,7 @@ class Navigacija extends HTMLElement {
     this.innerHTML = `
       <nav>
         <a href="index.html">Home</a>
-        <a href="myProfile.html">My profile</a>
+        <a href="my-profile.html">My profile</a>
       </nav>
     `
   }

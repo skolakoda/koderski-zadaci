@@ -1,18 +1,36 @@
 import { urll } from '../utils/constants.js'
 import { minLength, validEmail, validationMessage } from '../utils/helpers.js'
 
-const urlLogin = `${urll}/login`
+function httpLogin () {
+  const urlLogin = `${urll}/login`
+  const logemail = document.querySelector('#log_email')
+  const logpass = document.querySelector('#log_pass')
+  const lrform = document.querySelector('#lr-form')
+  const formlog = document.querySelector('.login-form')
+  let email = logemail.value
+  let password = logpass.value
+  console.log('httpLogin')
+
+  window.fetch(urlLogin, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  })
+    .then(response => response.json())
+    .then(response => {
+      window.localStorage.setItem('x-auth-token', response.data)
+      console.log('response: ', response.data)
+      formlog.classList.add('dontShow')
+      lrform.classList.add('dontShow')
+    })
+}
 
 function handleSubmitLog (event) {
   event.preventDefault()
-  const lrform = document.querySelector('#lr-form')
-  const formlog = document.querySelector('.login-form')
   const logmsg = document.querySelector('#log_msg')
   const logemail = document.querySelector('#log_email')
   const logpass = document.querySelector('#log_pass')
 
-  let email = logemail.value
-  let password = logpass.value
   logmsg.innerHTML = ''
 
   if (logemail.value.length === 0 || logpass.value.length === 0) {
@@ -22,18 +40,7 @@ function handleSubmitLog (event) {
   } else if (!minLength(logpass.value)) {
     validationMessage(logmsg, logpass, 'You must enter at least 8 character!')
   } else {
-    window.fetch(urlLogin, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    })
-      .then(response => response.json())
-      .then(response => {
-        window.localStorage.setItem('x-auth-token', response.data)
-        console.log('response: ', response.data)
-        formlog.classList.add('dontShow')
-        lrform.classList.add('dontShow')
-      })
+    httpLogin()
   }
 }
 
@@ -50,10 +57,8 @@ class Login extends HTMLElement {
             </form>
         `
   }
-  connectedCalback () {
-    const lrform = document.querySelector('#lr-form')
-    const formlog = document.querySelector('.login-form')
-    lrform.classList.remove('dontShow')
+  connectedCallback () {
+    const formlog = document.querySelector('#login-form')
     formlog.addEventListener('submit', handleSubmitLog)
   }
 }

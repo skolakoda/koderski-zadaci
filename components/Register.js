@@ -1,21 +1,41 @@
 import { urll } from '../utils/constants.js'
 import { blankSpace, minLength, validEmail, matchValue, validationMessage } from '../utils/helpers.js'
 
-const urlRegister = `${urll}/registracija`
+function httpRegister () {
+  const urlRegister = `${urll}/registracija`
+  const formreg = document.querySelector('.register-form')
+  const lrform = document.querySelector('#lr-form')
+  const regemail = document.querySelector('#reg_email')
+  const regpass = document.querySelector('#reg_pass')
+  const regrpass = document.querySelector('#reg_repeat_pass')
+  let email = regemail.value
+  let password = regpass.value
+  let repeatPassword = regrpass.value
+  console.log('httpRegister')
+
+  window.fetch(urlRegister, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, repeatPassword })
+  })
+    .then(response => response.json())
+    .then(response => {
+      window.testlocalStorage.setItem('x-auth-token', response.data)
+      console.log('response: ', response.data)
+      formreg.classList.add('dontShow')
+      lrform.classList.add('dontShow')
+    })
+    .catch(error => console.error('Error:', error))
+}
 
 function handleSubmitReg (event) {
   event.preventDefault()
-  const formreg = document.querySelector('.register-form')
   const lrform = document.querySelector('#lr-form')
   const regmsg = document.querySelector('#reg_msg')
   const regname = document.querySelector('#reg_uname')
   const regpass = document.querySelector('#reg_pass')
   const regrpass = document.querySelector('#reg_repeat_pass')
   const regemail = document.querySelector('#reg_email')
-
-  let email = regemail.value
-  let password = regpass.value
-  let repeatPassword = regrpass.value
 
   lrform.classList.remove('dontShow')
   regmsg.innerHTML = ''
@@ -31,19 +51,7 @@ function handleSubmitReg (event) {
   } else if (!validEmail(regemail.value)) {
     validationMessage(regmsg, regemail, 'Please type valid e-mail!')
   } else {
-    window.fetch(urlRegister, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, repeatPassword })
-    })
-      .then(response => response.json())
-      .then(response => {
-        window.testlocalStorage.setItem('x-auth-token', response.data)
-        console.log('response: ', response.data)
-        formreg.classList.add('dontShow')
-        lrform.classList.add('dontShow')
-      })
-      .catch(error => console.error('Error:', error))
+    httpRegister()
   }
 }
 
@@ -63,7 +71,7 @@ class Register extends HTMLElement {
         `
   }
   connectedCallback () {
-    const formreg = document.querySelector('.register-form')
+    const formreg = document.querySelector('#register-form')
     formreg.addEventListener('submit', handleSubmitReg)
   }
 }
