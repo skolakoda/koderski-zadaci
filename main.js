@@ -1,66 +1,66 @@
+import { editor } from './utils/editor.js'
+import { $ } from './utils/helpers.js'
 import './components/Navigacija.js'
 import './components/Footer.js'
 
-const CodeMirror = window.CodeMirror
-const allChallenges = document.querySelector('.allChallenges')
-const challengeText = document.querySelector('#challengeText')
-let challengeArray
+let challenges = []
+let currentChallengeId = '2'
+
+/* FUNCTIONS */
+
+const findChallenge = id => challenges.find(challenge => challenge.id === id)
+
+function displayChallenge () {
+  const star = '&#9733;'
+  challenges.forEach(challenge => {
+    const element = document.createElement('div')
+    element.addEventListener('click', () => selectChallenge(element))
+    element.id = challenge.id
+    element.classList.add('challenge')
+    element.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
+    $('.challenges').appendChild(element)
+  })
+}
+
+function toggleActive (challengeDiv) {
+  document.querySelectorAll('.active').forEach(activeDiv => {
+    activeDiv.classList.remove('active')
+  })
+  challengeDiv.classList.add('active')
+}
+
+function selectChallenge (element) {
+  currentChallengeId = element.id
+  toggleActive(element)
+  const challenge = findChallenge(currentChallengeId)
+  if (typeof challenge.text !== 'string') {
+    const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
+    $('#challengeText').innerHTML = challenge.text.toString().replace(reg, ' ')
+    return
+  }
+  $('#challengeText').innerHTML = challenge.text
+}
+
+/* INIT */
 
 window.fetch('../data/tasks.json')
   .then(response => response.json())
   .then(response => {
-    challengeArray = response
-    displayChallenge(response)
+    challenges = response
+    displayChallenge()
   })
 
-function displayChallenge (challengeArray) {
-  const star = '&#9733;'
-  challengeArray.forEach(challenge => {
-    let challengeDiv = document.createElement('DIV')
-    challengeDiv.addEventListener('click', () => toTextarea(challengeDiv))
-    challengeDiv.id = challenge.id
-    challengeDiv.classList.add('challenge')
-    challengeDiv.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
-    allChallenges.appendChild(challengeDiv)
+/* EVENTS */
+
+$('#run').addEventListener('click', function () {
+  const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
+  const challenge = findChallenge(currentChallengeId)
+  let solved = true
+  challenge.tests.forEach((test, i) => {
+    const result = solution(test.input)
+    solved = solved && (result === test.output)
+    console.log(i, result === test.output)
   })
-}
-
-function addStyle (challengeDiv) {
-  if (document.querySelectorAll('.active')) {
-    document.querySelectorAll('.active').forEach(activeDiv => {
-      activeDiv.classList.remove('active')
-    })
-  }
-  challengeDiv.classList.add('active')
-}
-
-function toTextarea (el) {
-  addStyle(el)
-  let id = el.getAttribute('id')
-  challengeArray.forEach(challenge => {
-    if (challenge.id === id) {
-      // in case of json text property spreads on more than 1 line
-      if (typeof challenge.text !== 'string') {
-        const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
-        challengeText.innerHTML = challenge.text.toString().replace(reg, ' ')
-        return
-      }
-      challengeText.innerHTML = challenge.text
-    }
-  })
-}
-
-const kzEditor = document.querySelector('#kzeditor')
-const editor = CodeMirror.fromTextArea(
-  kzEditor, {
-    mode: 'javascript',
-    theme: 'nord',
-    lineNumbers: true
-  })
-
-const dugme = document.querySelector('#run')
-dugme.addEventListener('click', function () {
-  const fromEditor = editor.getValue()
-  const resenje = new Function(`return ${fromEditor}`)()
-  console.log(resenje) // resenje is a function to test
+  const message = solved ? 'Cestitamo, resili ste zadatak!' : 'Resenje nije ispravno'
+  $('#message').innerHTML = message
 })
