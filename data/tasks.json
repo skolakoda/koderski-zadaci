@@ -26,15 +26,15 @@
     "text": "Create a function called findLongestWordLength that receives sentence in form of string and returns number of characters of the longest word in that sentence",
     "tests": [
         {
-            "input": "findLongestWordLength('The quick brown fox jumped over the lazy dog')",
+            "input": "The quick brown fox jumped over the lazy dog",
             "output": 6
         },
         {
-            "input": "findLongestWordLength('What is the average airspeed velocity of an unladen swallow')",
+            "input": "What is the average airspeed velocity of an unladen swallow",
             "output": 8
         },
         {
-            "input": "findLongestWordLength('What if we try a super-long word such as otorhinolaryngology')",
+            "input": "What if we try a super-long word such as otorhinolaryngology",
             "output": 19
         }
     ],
