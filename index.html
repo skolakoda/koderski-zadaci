@@ -29,9 +29,7 @@
     <!-- <img src="https://img.icons8.com/color/48/000000/javascript.png" alt="jsIcon" /> -->
   </header>
 
-  <div class="left">
-    <div class="allChallenges"></div>
-  </div>
+  <aside class="left challenges"></aside>
 
   <div class="right">
     <div class="challengeTextWrap">
@@ -42,8 +40,8 @@
     </div>
     <div class="editorField">
       <textarea id="kzeditor">
-function changeName(arg1, arg2) {
-  return 'Zdravo'
+function solution(arg1) {
+  return Math.max(...(arg1.split(' ').map(x => x.length)))
 }
 </textarea>
       <button id="run">Run</button>

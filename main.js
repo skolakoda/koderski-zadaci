@@ -2,21 +2,23 @@ import { editor } from './utils/editor.js'
 import './components/Navigacija.js'
 import './components/Footer.js'
 
-const allChallenges = document.querySelector('.allChallenges')
+const sidebar = document.querySelector('.challenges')
 const challengeText = document.querySelector('#challengeText')
-const dugme = document.querySelector('#run')
+const runButton = document.querySelector('#run')
+
+let challenges = []
 
 /* FUNCTIONS */
 
-function displayChallenge (challenges) {
+function displayChallenge () {
   const star = '&#9733;'
   challenges.forEach(challenge => {
-    const div = document.createElement('DIV')
-    div.addEventListener('click', () => selectChallenge(div, challenges))
-    div.id = challenge.id
-    div.classList.add('challenge')
-    div.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
-    allChallenges.appendChild(div)
+    const element = document.createElement('div')
+    element.addEventListener('click', () => selectChallenge(element))
+    element.id = challenge.id
+    element.classList.add('challenge')
+    element.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
+    sidebar.appendChild(element)
   })
 }
 
@@ -27,9 +29,9 @@ function toggleActive (challengeDiv) {
   challengeDiv.classList.add('active')
 }
 
-function selectChallenge (div, challenges) {
-  toggleActive(div)
-  const challenge = challenges.find(challenge => challenge.id === div.id)
+function selectChallenge (element) {
+  toggleActive(element)
+  const challenge = challenges.find(challenge => challenge.id === element.id)
   if (typeof challenge.text !== 'string') {
     const reg = new RegExp(',(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g')
     challengeText.innerHTML = challenge.text.toString().replace(reg, ' ')
@@ -43,13 +45,16 @@ function selectChallenge (div, challenges) {
 window.fetch('../data/tasks.json')
   .then(response => response.json())
   .then(response => {
-    displayChallenge(response)
+    challenges = response
+    displayChallenge()
   })
 
 /* EVENTS */
 
-dugme.addEventListener('click', function () {
+runButton.addEventListener('click', function () {
   const editorValue = editor.getValue()
-  const resenje = new Function(`return ${editorValue}`)() // eslint-disable-line
-  console.log(resenje) // resenje is a function to test
+  // solution is a function to test
+  const solution = new Function(`return ${editorValue}`)() // eslint-disable-line
+  const result = solution('The quick brown fox jumped over the lazy dog')
+  console.log(result === 6)
 })
