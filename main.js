@@ -31,6 +31,7 @@ function toggleActive (challengeDiv) {
 }
 
 function selectChallenge (element) {
+  $('#message').innerHTML = ''
   currentChallengeId = element.id
   toggleActive(element)
   const challenge = findChallenge(currentChallengeId)
@@ -60,16 +61,20 @@ $('#run').addEventListener('click', function () {
   const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
   const challenge = findChallenge(currentChallengeId)
   let solved = true
+  let errorMsg = []
   challenge.tests.forEach((test, i) => {
     try {
       const result = eval(test.input) // izvrsava solution funkciju iz JSON-a
       const output = JSON.parse(test.output)
-      assert[test.method](result, output, 'Solution is not correct')
+      assert[test.method](result, output, test.input)
     } catch (e) {
       solved = false
-      console.log(e.message)
+      errorMsg.push(e.message)
+      $('#message').innerHTML += '<div class="error-msg">' + e.message + '</div>'
     }
   })
-  const message = solved ? 'Cestitamo, resili ste zadatak!' : 'Resenje nije ispravno'
-  $('#message').innerHTML = message
+  // const message = solved ? 'Cestitamo, resili ste zadatak!' : errorMsg
+  if (solved) {
+    $('#message').innerHTML += '<div class="success-msg">Čestitamo, rešili ste zadatak!</div>'
+  }
 })
