@@ -2,36 +2,37 @@
     {
     "id": "1",
     "title": "Generate Random Whole Numbers within a Range",
+    "name": "randomRange",
     "text": "Create a function called randomRange that receives a range myMin and myMax as arguments and returns a random number that's greater than or equal to myMin, and is less than or equal to myMax, inclusive.",
-    "body": "function solution(min, max) {\n\treturn \n}",
+    "body": "function randomRange(min, max) {\n\treturn \n}",
     "tests": [
         {
-            "input": "solution(2,5)",
+            "input": "randomRange(2,5)",
             "output": 2,
             "method": "isAtLeast"
         },
         {
-            "input": "solution(2,5)",
+            "input": "randomRange(2,5)",
             "output": 5,
             "method": "isAtMost"
         },
         {
-            "input": "solution(0,18)",
+            "input": "randomRange(0,18)",
             "output": 0,
             "method": "isAtLeast"
         },
         {
-            "input": "solution(0,18)",
+            "input": "randomRange(0,18)",
             "output": 18,
             "method": "isAtMost"
         },
         {
-            "input": "solution(568, 1000)",
+            "input": "randomRange(568, 1000)",
             "output": 568,
             "method": "isAtLeast"
         },
         {
-            "input": "solution(568, 1000)",
+            "input": "randomRange(568, 1000)",
             "output": 1000,
             "method": "isAtMost"
         }
@@ -42,21 +43,22 @@
   {
     "id": "2",
     "title": "Find the Longest Word in a String",
-    "text": "Create a function called findLongestWordLength that receives sentence in form of string and returns number of characters of the longest word in that sentence",
-    "body": "function solution(text) {\n\treturn \n}",
+    "name": "findLongestWordLength",
+    "text": "Create a function called findLongestWordLength that receives sentence in form of string and returns number of characters of the longest word in that sentence.",
+    "body": "function findLongestWordLength(text) {\n\treturn \n}",
     "tests": [
         {
-            "input": "solution('The quick brown fox jumped over the lazy dog')",
+            "input": "findLongestWordLength('The quick brown fox jumped over the lazy dog')",
             "output": 6,
             "method": "equal"
         },
         {
-            "input": "solution('What is the average airspeed velocity of an unladen swallow')",
+            "input": "findLongestWordLength('What is the average airspeed velocity of an unladen swallow')",
             "output": 8,
             "method": "equal"
         },
         {
-            "input": "solution('What if we try a super-long word such as otorhinolaryngology')",
+            "input": "findLongestWordLength('What if we try a super-long word such as otorhinolaryngology')",
             "output": 19,
             "method": "equal"
         }
@@ -67,23 +69,28 @@
   {
     "id": "3",
     "title": "Equal Sides Of An Array",
+    "name": "findEvenIndex",
     "text": ["You are going to be given a function findEvenIndex that accepts an array of integers.",
     "Your job is to take that array and find an index N where the sum of the integers to the left of N is equal",
      "to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.",
      "For example: Let's say you are given the array {1,2,3,4,3,2,1} - Your function will return the index 3,",
     "because at the 3rd position of the array, the sum of left side of the index ({1,2,3}) and the sum of the right side of the index ({3,2,1}) both equal 6."],
+    "body": "function findEvenIndex(arr) {\n\treturn \n}",
     "tests": [
         {
-            "input": "[1,100,50,-51,1,1]",
-            "output": 1
+            "input": "findEvenIndex([1,100,50,-51,1,1])",
+            "output": 1,
+            "method": "equal"
         },
         {
-            "input": "[1,2,3,4,5,6]",
-            "output": -1
+            "input": "findEvenIndex([1,2,3,4,5,6])",
+            "output": -1,
+            "method": "equal"
         },
         {
-            "input": "[20,10,30,10,10,15,35]",
-            "output": 3
+            "input": "findEvenIndex([20,10,30,10,10,15,35])",
+            "output": 3,
+            "method": "equal"
         }
     ],
     "category": "mathematics",
@@ -92,19 +99,24 @@
   {
     "id": "4",
     "title": "Ones and Zeros",
+    "name": "binaryToNumber",
     "text": "Given an array of ones and zeroes, create a function called binaryToNumber that converts the equivalent binary value to an integer. Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1. The arrays can have varying number of elements.",
+    "body": "function binaryToNumber(arr) {\n\treturn \n}",
     "tests": [
         {
-            "input": "solution([0,0,1,0])",
-            "output": 2
+            "input": "binaryToNumber([0,0,1,0])",
+            "output": 2,
+            "method": "equal"
         },
         {
-            "input": "solution([1,1,1,1])",
-            "output": 15
+            "input": "binaryToNumber([1,1,1,1])",
+            "output": 15,
+            "method": "equal"
         },
         {
-            "input": "solution([0,1,1,0])",
-            "output": 6
+            "input": "binaryToNumber([0,1,1,0])",
+            "output": 6,
+            "method": "equal"
         }
     ],
     "category": "mathematics",
@@ -113,19 +125,24 @@
   {
     "id": "6",
     "title": "Exes and Ohs",
+    "name": "XO",
     "text": "Create a function named XO that checks if a string has the same amount of 'x's and 'o's. It must return a boolean and be case insensitive. The input string can contain any char.",
+    "body": "function XO(str) {\n\treturn \n}",
     "tests": [
         {
-            "input": "solution('zpzpzpp')",
-            "output": true
+            "input": "XO('zpzpzpp')",
+            "output": true,
+            "method": "equal"
         },
         {
-            "input": "solution('xxOo')",
-            "output": true
+            "input": "XO('xxOo')",
+            "output": true,
+            "method": "equal"
         },
         {
-            "input": "solution('ooom')",
-            "output": false
+            "input": "XO('ooom')",
+            "output": false,
+            "method": "equal"
         }
     ],
     "category": "boolean",
@@ -134,19 +151,24 @@
   {
     "id": "7",
     "title": "Chunky Monkey",
-    "text": "Write a function chunkArray that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array. For example ['a', 'b', 'c', 'd'], 2) should return [['a', 'b'], ['c', 'd']]",
+    "name": "chunkArray",
+    "text": "Write a function chunkArray that splits an array (first argument) into groups the length of size of the second argument(type number) and returns them as a two-dimensional array. For example ['a', 'b', 'c', 'd'], 2) should return [['a', 'b'], ['c', 'd']].",
+    "body": "function chunkArray(arr, num) {\n\treturn \n}",
     "tests": [
         {
-            "input": "solution([0, 1, 2, 3, 4, 5], 3)",
-            "output": "[[0, 1, 2], [3, 4, 5]]"
+            "input": "chunkArray([0, 1, 2, 3, 4, 5], 3)",
+            "output": "[[0, 1, 2], [3, 4, 5]]",
+            "method": "deepEqual"
         },
         {
-            "input": "solution([0, 1, 2, 3, 4, 5], 2)",
-            "output": "[[0, 1], [2, 3], [4, 5]]"
+            "input": "chunkArray([0, 1, 2, 3, 4, 5], 2)",
+            "output": "[[0, 1], [2, 3], [4, 5]]",
+            "method": "deepEqual"
         },
         {
-            "input": "solution([0, 1, 2, 3, 4, 5, 6, 7, 8], 2)",
-            "output": "[[0, 1], [2, 3], [4, 5], [6, 7], [8]]"
+            "input": "chunkArray([0, 1, 2, 3, 4, 5, 6, 7, 8], 2)",
+            "output": "[[0, 1], [2, 3], [4, 5], [6, 7], [8]]",
+            "method": "deepEqual"
         }
     ],
     "category": "array",

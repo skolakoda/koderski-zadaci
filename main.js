@@ -45,6 +45,27 @@ function selectChallenge (element) {
   $('#challengeText').innerHTML = challenge.text
 }
 
+function checkChallenge () {
+  $('#message').innerHTML = ''
+  let solved = true
+  const challenge = findChallenge(currentChallengeId)
+  // uzima funkciju iz editora
+  window[challenge.name] = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
+  challenge.tests.forEach((test, i) => {
+    try {
+      const testCase = eval(test.input) // izvrsava zadatu funkciju iz JSON-a
+      const output = JSON.parse(test.output)
+      assert[test.method](testCase, output, test.input)
+    } catch (e) {
+      solved = false
+      $('#message').innerHTML += '<div class="error-msg">' + e.message + '</div>'
+    }
+  })
+  if (solved) {
+    $('#message').innerHTML = '<div class="success-msg">Čestitamo, rešili ste zadatak!</div>'
+  }
+}
+
 /* INIT */
 
 window.fetch('../data/tasks.json')
@@ -56,25 +77,4 @@ window.fetch('../data/tasks.json')
 
 /* EVENTS */
 
-$('#run').addEventListener('click', function () {
-  // mora naziv solution zbog JSON-a
-  const solution = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
-  const challenge = findChallenge(currentChallengeId)
-  let solved = true
-  let errorMsg = []
-  challenge.tests.forEach((test, i) => {
-    try {
-      const result = eval(test.input) // izvrsava solution funkciju iz JSON-a
-      const output = JSON.parse(test.output)
-      assert[test.method](result, output, test.input)
-    } catch (e) {
-      solved = false
-      errorMsg.push(e.message)
-      $('#message').innerHTML += '<div class="error-msg">' + e.message + '</div>'
-    }
-  })
-  // const message = solved ? 'Cestitamo, resili ste zadatak!' : errorMsg
-  if (solved) {
-    $('#message').innerHTML += '<div class="success-msg">Čestitamo, rešili ste zadatak!</div>'
-  }
-})
+$('#run').addEventListener('click', checkChallenge)
