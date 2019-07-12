@@ -74,7 +74,7 @@ function checkChallenge () {
 
 /* INIT */
 
-window.fetch('../data/tasks.json')
+window.fetch('data/tasks.json')
   .then(response => response.json())
   .then(response => {
     challenges = response
