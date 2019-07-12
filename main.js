@@ -11,7 +11,14 @@ let currentChallengeId = '2'
 
 const findChallenge = id => challenges.find(challenge => challenge.id === id)
 
-function displayChallenge () {
+function toggleActive (challengeDiv) {
+  document.querySelectorAll('.active').forEach(activeDiv => {
+    activeDiv.classList.remove('active')
+  })
+  challengeDiv.classList.add('active')
+}
+
+function displayChallenges () {
   const star = '&#9733;'
   challenges.forEach(challenge => {
     const element = document.createElement('div')
@@ -21,13 +28,6 @@ function displayChallenge () {
     element.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
     $('.challenges').appendChild(element)
   })
-}
-
-function toggleActive (challengeDiv) {
-  document.querySelectorAll('.active').forEach(activeDiv => {
-    activeDiv.classList.remove('active')
-  })
-  challengeDiv.classList.add('active')
 }
 
 function selectChallenge (element) {
@@ -72,7 +72,7 @@ window.fetch('../data/tasks.json')
   .then(response => response.json())
   .then(response => {
     challenges = response
-    displayChallenge()
+    displayChallenges()
   })
 
 /* EVENTS */
