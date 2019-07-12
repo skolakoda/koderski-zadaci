@@ -2,7 +2,7 @@ import { editor } from './utils/editor.js'
 import { $ } from './utils/helpers.js'
 import './components/Navigacija.js'
 import './components/Footer.js'
-const { assert, expect } = window.chai
+const { assert } = window.chai
 
 let challenges = []
 let currentChallengeId = '2'
@@ -11,30 +11,34 @@ let currentChallengeId = '2'
 
 const findChallenge = id => challenges.find(challenge => challenge.id === id)
 
-function toggleActive (challengeDiv) {
-  document.querySelectorAll('.active').forEach(activeDiv => {
-    activeDiv.classList.remove('active')
-  })
+function toggleActive (id) {
+  const challengeDiv = $(`#challenge-${id}`)
+  document.querySelectorAll('.active').forEach(el => el.classList.remove('active'))
   challengeDiv.classList.add('active')
 }
 
-function displayChallenges () {
+function renderChallenge (challenge) {
   const star = '&#9733;'
+  const div = document.createElement('div')
+  div.id = `challenge-${challenge.id}`
+  div.classList.add('challenge')
+  div.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
+  div.addEventListener('click', () => selectChallenge(challenge.id))
+  return div
+}
+
+function renderChallenges () {
   challenges.forEach(challenge => {
-    const element = document.createElement('div')
-    element.addEventListener('click', () => selectChallenge(element))
-    element.id = challenge.id
-    element.classList.add('challenge')
-    element.innerHTML = `<p>${challenge.title}</p><span>${star.repeat(challenge.level)}</span>`
+    const element = renderChallenge(challenge)
     $('.challenges').appendChild(element)
   })
 }
 
-function selectChallenge (element) {
+function selectChallenge (id) {
   $('#message').innerHTML = ''
-  currentChallengeId = element.id
-  toggleActive(element)
-  const challenge = findChallenge(currentChallengeId)
+  currentChallengeId = id
+  toggleActive(id)
+  const challenge = findChallenge(id)
   editor.setValue(challenge.body)
 
   if (typeof challenge.text !== 'string') {
@@ -72,7 +76,7 @@ window.fetch('../data/tasks.json')
   .then(response => response.json())
   .then(response => {
     challenges = response
-    displayChallenges()
+    renderChallenges()
   })
 
 /* EVENTS */
