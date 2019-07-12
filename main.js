@@ -6,6 +6,7 @@ const { assert } = window.chai
 
 let challenges = []
 let currentChallengeId = '2'
+const defaultMessage = 'Try your solution in code editor.'
 
 /* FUNCTIONS */
 
@@ -35,7 +36,7 @@ function renderChallenges () {
 }
 
 function selectChallenge (id) {
-  $('#message').innerHTML = ''
+  $('#message').innerHTML = defaultMessage
   currentChallengeId = id
   toggleActive(id)
   const challenge = findChallenge(id)
@@ -53,20 +54,21 @@ function checkChallenge () {
   $('#message').innerHTML = ''
   let solved = true
   const challenge = findChallenge(currentChallengeId)
-  // uzima funkciju iz editora
+  // uzima funkciju iz editora i smesta je u globalni prostor
   window[challenge.name] = new Function(`return ${editor.getValue()}`)() // eslint-disable-line
-  challenge.tests.forEach((test, i) => {
+  challenge.tests.forEach(test => {
     try {
-      const testCase = eval(test.input) // izvrsava zadatu funkciju iz JSON-a
+      const testCase = eval(test.input) // izvrsava funkciju istog naziva iz JSON-a
       const output = JSON.parse(test.output)
       assert[test.method](testCase, output, test.input)
+      $('#message').innerHTML += `<div class="success-msg">✓ ${test.input}</div>`
     } catch (e) {
       solved = false
-      $('#message').innerHTML += '<div class="error-msg">' + e.message + '</div>'
+      $('#message').innerHTML += `<div class="error-msg">✘ ${e.message}</div>`
     }
   })
   if (solved) {
-    $('#message').innerHTML = '<div class="success-msg">Čestitamo, rešili ste zadatak!</div>'
+    $('#message').innerHTML += '<div class="success-msg">Čestitamo, rešili ste zadatak!</div>'
   }
 }
 
@@ -77,6 +79,7 @@ window.fetch('../data/tasks.json')
   .then(response => {
     challenges = response
     renderChallenges()
+    selectChallenge(challenges[0].id)
   })
 
 /* EVENTS */
