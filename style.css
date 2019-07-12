@@ -117,6 +117,19 @@ textarea {
   color: #d4d1d1;
 }
 
+#message {
+  grid-area: j;
+  padding: 10px;
+}
+
+.error-msg {
+  color: red;
+}
+
+.success-msg {
+  color: green;
+}
+
 nash-footer {
   grid-area: f;
   background-color: #0b0c10;
